@@ -1,2 +1,4 @@
 binance-futures-connector
 requests
+pyyaml
+cryptography
