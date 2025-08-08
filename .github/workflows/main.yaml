@@ -1,4 +1,4 @@
-name: Notify every 10 minutes
+name: main
 
 on:
   workflow_dispatch:
