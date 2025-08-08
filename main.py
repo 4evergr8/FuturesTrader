@@ -17,7 +17,6 @@ sendkey = os.getenv("SENDKEY")
 
 
 
-
 def alart(sendkey,title,content):
 
     print(content)
@@ -38,7 +37,7 @@ def alart(sendkey,title,content):
 
 
 amt = 0.00
-percent = 0.8
+percent = 1
 symbol = 'SOLUSDT'
 client = UMFutures(key=api_key, secret=api_secret)
 client.change_leverage(symbol=symbol, leverage=20)
@@ -101,7 +100,7 @@ if amt < 0 and not has_buy_order:
     )
 
     print(
-        f"订单ID: {order.get('orderId')} | 符号: {order.get('symbol')} | 类型: {order.get('type')} | 方向: {order.get('side')} | 位置方向: {order.get('positionSide')} | "
+        f"订单ID: {order.get('orderId')} | 类型: {order.get('type')} | 方向: {order.get('side')} | 位置方向: {order.get('positionSide')} | "
         f"状态: {order.get('status')} | 原始价格: {float(order.get('price', 0)):.4f} | 平均成交价: {float(order.get('avgPrice', 0)):.4f} | "
         f"原始数量: {float(order.get('origQty', 0)):.4f} | 已成交数量: {float(order.get('executedQty', 0)):.4f} | "
         f"触发价: {float(order.get('activatePrice', 0)):.4f} | 回调比例: {float(order.get('priceRate', 0)):.2f}% | 止损价: {float(order.get('stopPrice', 0)):.4f} | "
@@ -119,7 +118,7 @@ if amt > 0 and not has_sell_order:
         workingType="MARK_PRICE"
     )
     print(
-        f"订单ID: {order.get('orderId')} | 符号: {order.get('symbol')} | 类型: {order.get('type')} | 方向: {order.get('side')} | 位置方向: {order.get('positionSide')} | "
+        f"订单ID: {order.get('orderId')} | 类型: {order.get('type')} | 方向: {order.get('side')} | 位置方向: {order.get('positionSide')} | "
         f"状态: {order.get('status')} | 原始价格: {float(order.get('price', 0)):.4f} | 平均成交价: {float(order.get('avgPrice', 0)):.4f} | "
         f"原始数量: {float(order.get('origQty', 0)):.4f} | 已成交数量: {float(order.get('executedQty', 0)):.4f} | "
         f"触发价: {float(order.get('activatePrice', 0)):.4f} | 回调比例: {float(order.get('priceRate', 0)):.2f}% | 止损价: {float(order.get('stopPrice', 0)):.4f} | "
