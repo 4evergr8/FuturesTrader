@@ -27,6 +27,6 @@ jobs:
           API_SECRET: ${{ secrets.API_SECRET }}
           API_KEY: ${{ secrets.API_KEY }}
           SENDKEY: ${{ secrets.SENDKEY }}
-        run: python script.py
+        run: python main.py
 
 
