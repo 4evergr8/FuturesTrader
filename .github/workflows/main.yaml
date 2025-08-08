@@ -13,16 +13,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: 设置Python环境
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'   # 选择Python版本
+          python-version: '3.10'   # 选择Python版本
 
-      - name: Install dependencies
+      - name: 安装依赖
         run: pip install -r requirements.txt
 
 
-      - name: Run Python script
+      - name: 运行脚本
         env:
           API_SECRET: ${{ secrets.API_SECRET }}
           API_KEY: ${{ secrets.API_KEY }}
