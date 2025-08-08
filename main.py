@@ -1,45 +1,30 @@
-import os
+import getpass
+
 from binance.um_futures import UMFutures
-import re
-import requests
-
-
-
-
-
-api_secret = os.getenv("API_SECRET")
-api_key = os.getenv("API_KEY")
-sendkey = os.getenv("SENDKEY")
-
-
-
-
-
-
-
-def alart(sendkey,title,content):
-
-    print(content)
-
-    num = re.search(r'sctp(\d+)t', sendkey).group(1)
-    url = f'https://{num}.push.ft07.com/send/{sendkey}.send'
-
-    data = {
-        'title': title,
-        'desp': content,
-    }
-
-    print(requests.post(url, json=data).json())
-
-
-
-
-
+from alart import alart
+from config import load_config
+from dec import decrypt
 
 amt = 0.00
 percent = 1
 symbol = 'SOLUSDT'
-client = UMFutures(key=api_key, secret=api_secret)
+proxies = { 'https': 'http://127.0.0.1:7890' }
+config=load_config()
+password = getpass.getpass("密码：")
+api_secret = decrypt(config['api_secret'],password)
+api_key = decrypt(config['api_key'],password)
+sendkey = decrypt(config['sendkey'],password)
+
+
+
+
+
+
+
+
+
+
+client = UMFutures(key=api_key, secret=api_secret,proxies=proxies)
 client.change_leverage(symbol=symbol, leverage=20)
 positions = client.get_position_risk(symbol=symbol)
 orders = client.get_orders(symbol=symbol)
