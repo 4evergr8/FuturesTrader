@@ -1,0 +1,32 @@
+name: Notify every 10 minutes
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/10 * * * *'
+
+
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'   # 选择Python版本
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+
+      - name: Run Python script
+        env:
+          API_SECRET: ${{ secrets.API_SECRET }}
+          API_KEY: ${{ secrets.API_KEY }}
+          SENDKEY: ${{ secrets.SENDKEY }}
+        run: python script.py
+
+
